@@ -1,10 +1,63 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Permissions de base pour la fenêtre principale",
+  "description": "Capabilities for the app window",
   "windows": ["main"],
   "permissions": [
-    "core:default",
-    "opener:default"
+    "core:path:default",
+    "core:event:default",
+    "core:window:default",
+    "core:app:default",
+    "core:resources:default",
+    "core:menu:default",
+    "core:tray:default",
+    "shell:allow-open",
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        {
+          "name": "exec-sh",
+          "cmd": "sh",
+          "args": ["-c", { "validator": ".+" }],
+          "sidecar": false
+        },
+        {
+          "name": "exec-ps",
+          "cmd": "powershell.exe",
+          "args": [
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            { "validator": ".+" }
+          ],
+          "sidecar": false
+        }
+      ]
+    },
+    "notification:default",
+    "os:allow-os-type",
+    "os:allow-platform",
+    "os:allow-arch",
+    "os:allow-family",
+    "os:allow-version",
+    "os:allow-locale",
+    "fs:allow-document-read",
+    "fs:allow-document-write",
+    "fs:allow-mkdir",
+    "fs:allow-exe-write",
+    "fs:allow-exe-read",
+    "fs:scope-exe-recursive",
+    "store:default",
+    {
+      "identifier": "http:default",
+      "allow": [{ "url": "https://scudyweb.be/*" }]
+    },
+    "sql:allow-execute",
+    "sql:allow-select",
+    "sql:allow-load",
+    "core:webview:allow-create-webview",
+    "core:webview:allow-create-webview-window"
   ]
 }

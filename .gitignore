@@ -24,3 +24,7 @@ logs
 # Editor
 .vscode
 .idea
+
+# Tauri
+src-tauri/target/
+src-tauri/gen/schemas/
