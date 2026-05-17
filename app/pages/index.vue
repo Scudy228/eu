@@ -281,7 +281,7 @@
 							<!-- Total période -->
 							<div v-if="meilleureFenetre && meilleureFenetre.totalReste > 0" class="flex items-center gap-3 px-4 py-2 rounded-xl bg-blue-50 border border-[#003399]/20 self-start sm:self-auto">
 								<span class="text-sm font-bold text-slate-500 uppercase tracking-wider">{{ t('quick.total_period') }}</span>
-								<span class="text-2xl font-black text-slate-900 tabular-nums">{{ fmt(meilleureFenetre.totalReste) }} €</span>
+								<span class="text-2xl font-black tabular-nums" style="color: #00091A">{{ fmt(meilleureFenetre.totalReste) }} €</span>
 							</div>
 							<div v-else class="hidden sm:block" />
 
@@ -588,7 +588,7 @@
 								{{ formatDate(groupe.dateMin) }}
 								<template v-if="groupe.dateMax !== groupe.dateMin"> → {{ formatDate(groupe.dateMax) }}</template>
 							</span>
-							<span class="text-base font-bold text-slate-600 ml-auto">{{ fmt(groupe.total) }} €</span>
+							<span class="text-base font-bold ml-auto" style="color: #00091A">{{ fmt(groupe.total) }} €</span>
 							<button
 								class="flex items-center gap-2 px-3 py-2 rounded-xl border-2 border-amber-300 text-amber-700 bg-amber-50 font-semibold text-sm hover:bg-amber-100 transition-colors"
 								@click="annulerLot(groupe)"
