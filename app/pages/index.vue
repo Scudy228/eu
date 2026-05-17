@@ -281,7 +281,7 @@
 							<!-- Total période -->
 							<div v-if="meilleureFenetre && meilleureFenetre.totalReste > 0" class="flex items-center gap-3 px-4 py-2 rounded-xl bg-blue-50 border border-[#003399]/20 self-start sm:self-auto">
 								<span class="text-sm font-bold text-slate-500 uppercase tracking-wider">{{ t('quick.total_period') }}</span>
-								<span class="text-2xl font-black tabular-nums" style="color: #00091A">{{ fmt(meilleureFenetre.totalReste) }} €</span>
+								<span class="text-2xl font-black text-slate-900 tabular-nums">{{ fmt(meilleureFenetre.totalReste) }} €</span>
 							</div>
 							<div v-else class="hidden sm:block" />
 
@@ -346,7 +346,7 @@
 								</div>
 							</div>
 							<div class="text-right shrink-0">
-								<div class="text-lg font-black" style="color: #00091A">{{ fmt(f.reste) }} €</div>
+								<div class="text-lg font-black text-slate-900">{{ fmt(f.reste) }} €</div>
 							</div>
 						</div>
 						<div v-if="facturesMeillerePaginee.length === 0" class="px-5 py-10 text-center text-slate-400 text-base">
