@@ -346,7 +346,7 @@
 								</div>
 							</div>
 							<div class="text-right shrink-0">
-								<div class="text-lg font-black text-orange-600">{{ fmt(f.reste) }} €</div>
+								<div class="text-lg font-black text-slate-900">{{ fmt(f.reste) }} €</div>
 							</div>
 						</div>
 						<div v-if="facturesMeillerePaginee.length === 0" class="px-5 py-10 text-center text-slate-400 text-base">
@@ -497,7 +497,7 @@
 						<div class="flex items-center justify-center">
 							<div
 								v-if="facturesIdsMeilleurePeriode.has(f.id!)"
-								class="flex items-center justify-center size-7 rounded-md border-2 border-[#FFCC00] bg-[#FFFBE6] blink-star"
+								class="flex items-center justify-center size-7 rounded-md border-2 border-[#FFCC00] bg-transparent blink-star"
 							>
 								<UIcon name="heroicons:star-solid" class="size-4 text-[#FFCC00]" />
 							</div>
