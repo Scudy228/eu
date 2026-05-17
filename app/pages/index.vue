@@ -599,7 +599,7 @@
 						</div>
 
 						<!-- Factures du lot -->
-						<div class="divide-y divide-slate-100">
+						<div>
 							<div
 								v-for="(f, i) in groupe.facturesFiltrees"
 								:key="f.id"
