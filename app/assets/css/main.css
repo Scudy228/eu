@@ -2,11 +2,12 @@
 @import "@nuxt/ui";
 
 /* ══════════════════════════════════════════════════════════
-   POLICES — Inter + Syne (heading)
+   POLICES — Montserrat (heading) + Inter (body)
+   Identique au projet EU
    ══════════════════════════════════════════════════════════ */
 @theme {
-	--font-heading: "Syne Variable", sans-serif;
-	--font-sans:    "Inter Variable", sans-serif;
+	--font-heading: "Montserrat", sans-serif;
+	--font-sans:    "Inter", sans-serif;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -14,7 +15,7 @@
    ══════════════════════════════════════════════════════════ */
 @keyframes blink-rouge {
 	0%, 100% { opacity: 1; }
-	50%       { opacity: 0.3; }
+	50%       { opacity: 0.25; }
 }
 @keyframes float-gentle {
 	0%, 100% { transform: translateY(0px); }
@@ -28,43 +29,36 @@
 	0%, 100% { opacity: 1; transform: scale(1); }
 	50%       { opacity: .7; transform: scale(1.15); }
 }
+@keyframes gold-pulse {
+	0%, 100% { box-shadow: 0 0 0 0px rgba(255,204,0,.0); }
+	50%       { box-shadow: 0 0 16px 4px rgba(255,204,0,.25); }
+}
 
 /* ══════════════════════════════════════════════════════════
-   BASE — Grande taille de police pour les personnes âgées
+   BASE — Tailles identiques au projet EU
    ══════════════════════════════════════════════════════════ */
 @layer base {
-	html {
-		font-size: 16px;
+	body {
+		background-color: #F0F4FF;
+		background-image:
+			radial-gradient(ellipse 60% 40% at 8%   0%,  rgba(0,51,153,.09)  0%, transparent 55%),
+			radial-gradient(ellipse 50% 35% at 92% 100%, rgba(255,204,0,.05) 0%, transparent 55%);
+		background-attachment: fixed;
+		min-height: 100dvh;
+		color: #00091A;
+		-webkit-font-smoothing: antialiased;
+		font-size: 15px;
 	}
 
 	@media (min-width: 640px) {
-		html { font-size: 17px; }
-	}
-
-	@media (min-width: 1024px) {
-		html { font-size: 18px; }
-	}
-
-	@media (min-width: 1280px) {
-		html { font-size: 19px; }
-	}
-
-	body {
-		background-color: #EEF2FF;
-		background-image:
-			radial-gradient(ellipse 70% 45% at 5% 0%, rgba(0,51,153,.08) 0%, transparent 60%),
-			radial-gradient(ellipse 50% 35% at 95% 100%, rgba(255,204,0,.06) 0%, transparent 55%);
-		background-attachment: fixed;
-		min-height: 100dvh;
-		color: #162040;
-		-webkit-font-smoothing: antialiased;
+		body { font-size: 17px; }
 	}
 
 	* { -webkit-tap-highlight-color: transparent; }
 
-	::-webkit-scrollbar        { width: 8px; height: 8px; }
-	::-webkit-scrollbar-track  { background: rgba(0,51,153,.04); }
-	::-webkit-scrollbar-thumb  { background: rgba(0,51,153,.28); border-radius: 99px; }
+	::-webkit-scrollbar        { width: 6px; height: 6px; }
+	::-webkit-scrollbar-track  { background: transparent; }
+	::-webkit-scrollbar-thumb  { background: rgba(0,51,153,.30); border-radius: 99px; }
 
 	:focus-visible {
 		outline: 3px solid #003399;
@@ -101,10 +95,13 @@
    ══════════════════════════════════════════════════════════ */
 @layer utilities {
 	.blink-rouge {
-		animation: blink-rouge 1.4s ease-in-out infinite;
+		animation: blink-rouge 1.2s ease-in-out infinite;
 	}
 	.blink-star {
 		animation: blink-star 1.5s ease-in-out infinite;
+	}
+	.card-ce-active {
+		animation: gold-pulse 2.5s ease-in-out infinite;
 	}
 }
 
@@ -138,22 +135,17 @@
 .modal-licence-leave-to > div:last-child { transform: scale(.92); opacity: 0; }
 
 /* ══════════════════════════════════════════════════════════
-   LISIBILITÉ — Textes slate allégés (light mode uniquement)
-   Ces sélecteurs unlayered écrasent @layer utilities de
-   Tailwind. En dark mode, .dark .text-slate-* (2 classes)
-   reste prioritaire — pas de conflit.
+   LIGHT MODE — Commission EU (couleurs identiques au projet EU)
    ══════════════════════════════════════════════════════════ */
-.text-slate-900 { color: #253756; }
-.text-slate-800 { color: #344a6a; }
-.text-slate-700 { color: #445b7c; }
-.text-slate-600 { color: #546d8e; }
-.text-slate-500 { color: #6480a0; }
+.text-slate-900 { color: #00091A; }
+.text-slate-800 { color: #001133; }
+.text-slate-700 { color: #002266; }
+.text-slate-600 { color: #003399; }
+.text-slate-500 { color: #1D4ED8; }
 
 /* ══════════════════════════════════════════════════════════
-   DARK MODE
-   Les sélecteurs .dark .xxx sont "unlayered" → ils ont
-   une priorité plus haute que les @layer utilities de
-   Tailwind, donc pas besoin de !important.
+   DARK MODE — EU Nuit · Navy & Or
+   Identique au thème "cream" du projet EU
    ══════════════════════════════════════════════════════════ */
 
 /* ── Couleurs arbitraires hardcodées ──────────────────── */
@@ -162,103 +154,109 @@
 
 /* ── Corps & fond de page ─────────────────────────────── */
 .dark body {
-	background-color: #000D1F;
+	background-color: #000A1E;
 	background-image:
-		radial-gradient(ellipse 70% 45% at 5% 0%, rgba(0,51,153,.30) 0%, transparent 60%),
-		radial-gradient(ellipse 50% 35% at 95% 100%, rgba(255,204,0,.10) 0%, transparent 55%);
+		radial-gradient(ellipse 65% 45% at 5%   0%,  rgba(0,51,153,.25)  0%, transparent 60%),
+		radial-gradient(ellipse 40% 30% at 95% 100%, rgba(255,204,0,.10) 0%, transparent 55%),
+		radial-gradient(ellipse 30% 20% at 50%  50%, rgba(0,51,153,.08)  0%, transparent 70%);
 	color: #E8F4FF;
 }
 
-.dark ::-webkit-scrollbar-track  { background: rgba(0,51,153,.12); }
-.dark ::-webkit-scrollbar-thumb  { background: rgba(77,119,255,.40); }
+.dark ::-webkit-scrollbar-track { background: transparent; }
+.dark ::-webkit-scrollbar-thumb { background: rgba(255,204,0,.35); }
 
-.dark :focus-visible { outline-color: #4D88FF; }
+.dark :focus-visible { outline-color: #FFCC00; }
 
-/* ── Surfaces blanches ────────────────────────────────── */
-.dark .bg-white          { background-color: #0D1B35; }
-.dark .bg-slate-50       { background-color: #0A1628; }
-.dark .bg-slate-100      { background-color: #0F2044; }
-.dark .bg-slate-200      { background-color: #162550; }
+/* ── Surfaces ─────────────────────────────────────────── */
+.dark .bg-white          { background-color: #001133; }
+.dark .bg-slate-50       { background-color: rgba(0,20,60,.70); }
+.dark .bg-slate-100      { background-color: rgba(0,20,60,.90); }
+.dark .bg-slate-200      { background-color: rgba(0,30,80,.80); }
 
 /* ── Hover surfaces ───────────────────────────────────── */
-.dark .hover\:bg-slate-50:hover  { background-color: #0F2044; }
-.dark .hover\:bg-slate-100:hover { background-color: #162550; }
-.dark .hover\:bg-blue-50:hover   { background-color: rgba(0,51,153,.25); }
+.dark .hover\:bg-slate-50:hover  { background-color: rgba(0,30,80,.60); }
+.dark .hover\:bg-slate-100:hover { background-color: rgba(0,30,80,.80); }
+.dark .hover\:bg-blue-50:hover   { background-color: rgba(255,204,0,.07); }
 
 /* ── Teintes colorées ─────────────────────────────────── */
-.dark .bg-blue-50        { background-color: rgba(0,51,153,.25); }
-.dark .bg-amber-50       { background-color: rgba(180,100,0,.18); }
-.dark .bg-orange-50      { background-color: rgba(180,60,0,.18); }
-.dark .bg-red-50         { background-color: rgba(180,20,20,.20); }
+.dark .bg-blue-50        { background-color: rgba(255,204,0,.07); }
+.dark .bg-amber-50       { background-color: rgba(255,204,0,.08); }
+.dark .bg-orange-50      { background-color: rgba(255,160,0,.10); }
+.dark .bg-red-50         { background-color: rgba(255,204,0,.06); }
 .dark .bg-emerald-50     { background-color: rgba(0,100,60,.20); }
 .dark .bg-emerald-100    { background-color: rgba(0,100,60,.30); }
-.dark .bg-sky-100        { background-color: rgba(0,80,160,.25); }
+.dark .bg-sky-100        { background-color: rgba(255,204,0,.07); }
 
-/* ── Bordures ─────────────────────────────────────────── */
-.dark .border-slate-100  { border-color: rgba(77,119,255,.12); }
-.dark .border-slate-200  { border-color: rgba(77,119,255,.22); }
-.dark .border-slate-300  { border-color: rgba(77,119,255,.32); }
-.dark .border-amber-200  { border-color: rgba(255,180,0,.30); }
-.dark .border-orange-200 { border-color: rgba(255,120,0,.30); }
-.dark .border-red-200    { border-color: rgba(240,60,60,.30); }
+/* ── Bordures — or EU ─────────────────────────────────── */
+.dark .border-slate-100  { border-color: rgba(255,204,0,.12); }
+.dark .border-slate-200  { border-color: rgba(255,204,0,.22); }
+.dark .border-slate-300  { border-color: rgba(255,204,0,.32); }
+.dark .border-amber-200  { border-color: rgba(255,204,0,.35); }
+.dark .border-orange-200 { border-color: rgba(255,160,0,.30); }
+.dark .border-red-200    { border-color: rgba(255,204,0,.30); }
 .dark .border-emerald-200{ border-color: rgba(0,200,100,.25); }
-.dark .border-blue-200   { border-color: rgba(77,119,255,.35); }
-.dark .divide-slate-100 > * + * { border-color: rgba(77,119,255,.12); }
+.dark .border-blue-200   { border-color: rgba(255,204,0,.30); }
+.dark .divide-slate-100 > * + * { border-color: rgba(255,204,0,.10); }
 
-/* ── Textes slate ─────────────────────────────────────── */
+/* ── Textes slate — EU Nuit ───────────────────────────── */
 .dark .text-slate-900    { color: #E8F4FF; }
-.dark .text-slate-800    { color: #CBE0FF; }
-.dark .text-slate-700    { color: #A8C4E0; }
-.dark .text-slate-600    { color: #8AAAC8; }
-.dark .text-slate-500    { color: #6B90B0; }
-.dark .text-slate-400    { color: #4E7090; }
-.dark .text-slate-300    { color: #3A5570; }
+.dark .text-slate-800    { color: #C8DCF8; }
+.dark .text-slate-700    { color: #A0C0E8; }
+.dark .text-slate-600    { color: #7EB3F5; }
+.dark .text-slate-500    { color: #4D90E8; }
+.dark .text-slate-400    { color: rgba(126,179,245,.55); }
+.dark .text-slate-300    { color: #A0C0E8; }
 
-/* ── Textes colorés ───────────────────────────────────── */
-.dark .text-amber-700    { color: #FFC566; }
-.dark .text-amber-800    { color: #FFB347; }
-.dark .text-orange-700   { color: #FFA366; }
-.dark .text-red-600      { color: #FF6B6B; }
+/* ── Textes colorés — accents or EU ──────────────────── */
+.dark .text-amber-700    { color: #FFCC00; }
+.dark .text-amber-800    { color: #FFD740; }
+.dark .text-orange-700   { color: #FFCC00; }
+.dark .text-red-600      { color: #FFCC00; }
 .dark .text-emerald-600  { color: #4DFFAA; }
 .dark .text-emerald-700  { color: #33EE99; }
-.dark .text-sky-600      { color: #66CCFF; }
-.dark .text-sky-700      { color: #44BBFF; }
+.dark .text-sky-600      { color: #FFCC00; }
+.dark .text-sky-700      { color: #FFD740; }
 
 /* ── Inputs & selects ─────────────────────────────────── */
 .dark input,
 .dark select,
 .dark textarea {
-	background-color: #0D1B35;
+	background-color: #001133;
 	color: #E8F4FF;
-	border-color: rgba(77,119,255,.30);
+	border-color: rgba(255,204,0,.25);
 	color-scheme: dark;
 }
 
 .dark input::placeholder,
-.dark textarea::placeholder { color: #4E7090; }
+.dark textarea::placeholder { color: rgba(126,179,245,.55); }
 
 .dark input:focus,
 .dark select:focus,
-.dark textarea:focus { border-color: #4D88FF; }
+.dark textarea:focus { border-color: #FFCC00; }
 
 /* ── Lignes de factures ───────────────────────────────── */
-.dark .invoice-row-a { background-color: #091525; }
-.dark .invoice-row-b { background-color: #0D1B35; }
-.dark .invoice-brd-a { border-color: rgba(77,119,255,.28); }
-.dark .invoice-brd-b { border-color: rgba(77,119,255,.15); }
+.dark .invoice-row-a { background-color: rgba(0,51,153,.15); }
+.dark .invoice-row-b { background-color: rgba(0,20,60,.60); }
+.dark .invoice-brd-a { border-color: rgba(255,204,0,.22); }
+.dark .invoice-brd-b { border-color: rgba(0,51,153,.30); }
 
 .dark .submitted-row-a {
-	background-color: #0A1420;
+	background-color: rgba(255,255,255,.03);
 	border-color: rgba(255,255,255,.06);
 }
 .dark .submitted-row-b {
-	background-color: #0D1828;
+	background-color: rgba(255,255,255,.015);
 	border-color: rgba(255,255,255,.04);
 }
 
 /* ── Badge "Soumis" ───────────────────────────────────── */
-.dark .bg-slate-200 { background-color: rgba(77,119,255,.18); }
-.dark .text-slate-600 { color: #8AAAC8; }
+.dark .bg-slate-200 { background-color: rgba(255,204,0,.12); }
+
+/* ── Hover sur cartes ─────────────────────────────────── */
+.dark .bg-white:hover {
+	box-shadow: 0 0 0 1px rgba(255,204,0,.20), 0 8px 24px rgba(0,51,153,.25);
+	transition: box-shadow 0.3s ease;
+}
 
 /* ── Gradients de section ─────────────────────────────── */
 .dark .from-\[\#003399\]\/5  { --tw-gradient-from: rgba(0,51,153,.18); }
