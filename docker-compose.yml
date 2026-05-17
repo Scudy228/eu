@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  nuxt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: eu2
+    restart: unless-stopped
+    env_file: .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.eu2-http.rule=Host(`scudyweb.be`)"
+      - "traefik.http.routers.eu2-http.entrypoints=web"
+      - "traefik.http.routers.eu2-http.middlewares=redirect-to-https"
+      - "traefik.http.routers.eu2.rule=Host(`scudyweb.be`)"
+      - "traefik.http.routers.eu2.entrypoints=websecure"
+      - "traefik.http.routers.eu2.tls.certresolver=letsencrypt"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
