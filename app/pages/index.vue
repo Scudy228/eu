@@ -310,7 +310,7 @@
 					<div class="px-5 py-3 bg-slate-50 border-b-2 border-slate-100 flex items-center gap-2">
 						<UIcon name="lucide:files" class="size-4 text-[#FFCC00]" />
 						<span class="text-sm font-black uppercase tracking-wider text-[#FFCC00]">{{ t('period.title') }}</span>
-						<span class="ml-auto inline-flex items-center justify-center min-w-8 h-6 px-2 rounded-md bg-[#FFCC00] text-[#00091A] font-black text-sm">
+						<span class="ml-auto inline-flex items-center justify-center min-w-8 h-6 px-2 rounded-md bg-[#FFCC00] font-black text-sm" style="color: #00091A">
 							{{ facturesMeillereFiltrees.length }}
 						</span>
 					</div>
@@ -439,7 +439,7 @@
 				<div class="flex items-center gap-4 mb-5 flex-wrap">
 					<div class="w-1.5 h-7 rounded-full bg-sky-500 shrink-0" />
 					<h2 class="text-2xl font-bold font-heading text-slate-900">{{ t('all.title') }}</h2>
-					<span class="inline-flex items-center justify-center min-w-8 h-8 px-3 rounded-xl bg-[#FFCC00] text-[#00091A] font-black text-base">
+					<span class="inline-flex items-center justify-center min-w-8 h-8 px-3 rounded-xl bg-[#FFCC00] font-black text-base" style="color: #00091A">
 						{{ listeFacturesFiltered.length }}
 					</span>
 					<div class="ml-auto flex items-center gap-2 flex-1 min-w-48">
@@ -554,7 +554,7 @@
 				<div class="flex items-center gap-4 mb-5 flex-wrap">
 					<div class="w-1.5 h-8 rounded-full bg-slate-400 shrink-0" />
 					<h2 class="text-2xl font-bold font-heading text-slate-500">{{ t('all.submitted_section') }}</h2>
-					<span class="inline-flex items-center justify-center min-w-8 h-8 px-3 rounded-xl bg-[#FFCC00] text-[#00091A] font-black text-base">
+					<span class="inline-flex items-center justify-center min-w-8 h-8 px-3 rounded-xl bg-[#FFCC00] font-black text-base" style="color: #00091A">
 						{{ listeFacturesSoumises.length }}
 					</span>
 					<div class="ml-auto flex items-center gap-2 flex-1 min-w-48">
