@@ -131,17 +131,15 @@
 			     BANNIÈRE MEILLEURE PÉRIODE
 			══════════════════════════════════════════════════════════ -->
 			<div class="text-center">
-				<div v-if="meilleureFenetre && meilleureFenetre.depassement > 0" class="inline-block w-full max-w-xl mx-auto">
-					<div class="rounded-2xl border-2 border-[#FFCC00] bg-gradient-to-br from-[#FFFBE6] to-[#FFFFF0] shadow-lg px-6 py-5">
-						<div class="flex items-center justify-center gap-2 mb-3">
-							<UIcon name="heroicons:star-solid" class="size-6 text-[#FFCC00]" />
-							<span class="text-sm font-black uppercase tracking-widest text-[#003399]">{{ t('banner.best_period') }}</span>
-							<UIcon name="heroicons:star-solid" class="size-6 text-[#FFCC00]" />
+				<div v-if="meilleureFenetre && meilleureFenetre.depassement > 0" class="inline-block">
+					<div class="bg-red-50 border-2 border-red-300 rounded-2xl px-8 py-4 shadow-md">
+						<div class="flex items-center justify-center gap-2 text-xs font-black uppercase tracking-widest text-red-500 mb-2">
+							<UIcon name="heroicons:star-solid" class="size-5" />
+							{{ t('banner.best_period') }}
+							<UIcon name="heroicons:star-solid" class="size-5" />
 						</div>
-						<div class="text-2xl sm:text-3xl font-black text-[#003399] blink-rouge">
-							{{ formatDate(meilleureFenetre.startDate) }}
-							<span class="mx-2 text-[#FFCC00]">→</span>
-							{{ formatDateFin(meilleureFenetre.endDate) }}
+						<div class="text-2xl lg:text-3xl font-black text-red-600 blink-rouge">
+							{{ formatDate(meilleureFenetre.startDate) }} → {{ formatDateFin(meilleureFenetre.endDate) }}
 						</div>
 					</div>
 				</div>
@@ -162,28 +160,28 @@
 			<!-- ══════════════════════════════════════════════════════
 			     SAISIE RAPIDE
 			══════════════════════════════════════════════════════════ -->
-			<div class="bg-white rounded-2xl border-2 border-[#003399]/15 shadow-sm overflow-hidden">
+			<div class="bg-white rounded-2xl border-2 border-slate-200 p-4 shadow-sm">
 				<!-- En-tête section -->
-				<div class="flex items-center justify-between px-5 py-4 bg-gradient-to-r from-[#003399]/5 to-transparent border-b border-[#003399]/10">
-					<div class="flex items-center gap-3">
-						<UIcon name="lucide:zap" class="size-5 text-[#003399]" />
-						<span class="text-base font-black uppercase tracking-wider text-[#003399]">{{ t('quick.title') }}</span>
+				<div class="flex items-center justify-between mb-3">
+					<div class="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+						<UIcon name="lucide:zap" class="size-3.5" />
+						{{ t('quick.title') }}
 					</div>
-					<div v-if="salaireNet > 0" class="flex items-center gap-3">
-						<span class="text-sm font-bold text-slate-500 uppercase tracking-wider whitespace-nowrap">{{ t('quick.threshold') }}</span>
-						<strong v-if="showSeuil" class="text-lg font-black text-[#003399] tabular-nums whitespace-nowrap">{{ fmt(salaireNet / 2) }} €</strong>
-						<span v-else class="text-base text-slate-300 tracking-widest font-bold">•••••</span>
+					<div v-if="salaireNet > 0" class="flex items-center gap-2">
+						<span class="text-xs font-bold text-slate-400 uppercase tracking-wider whitespace-nowrap">{{ t('quick.threshold') }}</span>
+						<strong v-if="showSeuil" class="text-sm font-black text-sky-600 tabular-nums whitespace-nowrap">{{ fmt(salaireNet / 2) }} €</strong>
+						<span v-else class="text-sm text-slate-300 tracking-widest">•••••</span>
 						<button
 							type="button"
 							class="text-slate-400 hover:text-slate-600 transition-colors"
 							@click="showSeuil = !showSeuil"
 						>
-							<UIcon :name="showSeuil ? 'lucide:eye-off' : 'lucide:eye'" class="size-4" />
+							<UIcon :name="showSeuil ? 'lucide:eye-off' : 'lucide:eye'" class="size-3.5" />
 						</button>
 					</div>
 				</div>
 
-				<div class="p-5">
+				<div>
 					<!-- Blocage profil incomplet -->
 					<div v-if="!profilComplet" class="rounded-xl bg-orange-50 border-2 border-orange-200 p-4 flex items-center gap-3">
 						<UIcon name="lucide:lock" class="size-6 text-orange-500 shrink-0" />
@@ -208,7 +206,7 @@
 					<div v-else class="space-y-3">
 						<!-- Personne : toujours pleine largeur -->
 						<div>
-							<label class="block text-sm font-bold text-slate-600 mb-1.5">{{ t('quick.person') }}</label>
+							<label class="block text-xs font-bold text-slate-500 mb-1">{{ t('quick.person') }}</label>
 							<div class="flex items-center gap-2">
 								<button
 									class="flex items-center justify-center size-12 rounded-xl border-2 border-slate-200 hover:border-[#003399] hover:bg-blue-50 transition-colors text-slate-500 hover:text-[#003399] shrink-0"
@@ -243,7 +241,7 @@
 						<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
 							<!-- N° page -->
 							<div>
-								<label class="block text-sm font-bold text-slate-600 mb-1.5">{{ t('quick.page') }}</label>
+								<label class="block text-xs font-bold text-slate-500 mb-1">{{ t('quick.page') }}</label>
 								<input
 									v-model="saisieRapide.numeroPage"
 									placeholder="42"
@@ -253,7 +251,7 @@
 
 							<!-- Date -->
 							<div>
-								<label class="block text-sm font-bold text-slate-600 mb-1.5">{{ t('quick.date') }}</label>
+								<label class="block text-xs font-bold text-slate-500 mb-1">{{ t('quick.date') }}</label>
 								<input
 									v-model="saisieRapide.date"
 									type="date"
@@ -263,7 +261,7 @@
 
 							<!-- Montant -->
 							<div class="sm:col-span-2 lg:col-span-1">
-								<label class="block text-sm font-bold text-slate-600 mb-1.5">{{ t('quick.amount') }}</label>
+								<label class="block text-xs font-bold text-slate-500 mb-1">{{ t('quick.amount') }}</label>
 								<div class="flex items-center gap-2">
 									<input
 										v-model.number="saisieRapide.montant"
@@ -308,15 +306,13 @@
 			<div v-if="meilleureFenetre && meilleureFenetre.depassement > 0" class="flex flex-col lg:flex-row gap-6">
 
 				<!-- GAUCHE : factures de la période -->
-				<div class="flex-1 bg-white rounded-2xl border-2 border-[#003399]/15 overflow-hidden shadow-sm">
-					<div class="flex items-center justify-between px-5 py-4 bg-gradient-to-r from-[#003399]/5 to-transparent border-b border-[#003399]/10">
-						<div class="flex items-center gap-3">
-							<UIcon name="lucide:files" class="size-5 text-[#003399]" />
-							<span class="text-base font-black uppercase tracking-wider text-[#003399]">{{ t('period.title') }}</span>
-							<span class="inline-flex items-center justify-center min-w-8 h-7 px-2 rounded-lg bg-[#FFCC00] text-[#00091A] font-black text-sm">
-								{{ facturesMeillereFiltrees.length }}
-							</span>
-						</div>
+				<div class="flex-1 bg-white rounded-2xl border-2 border-slate-200 overflow-hidden shadow-sm">
+					<div class="flex items-center justify-between mb-3">
+						<UIcon name="lucide:files" class="size-4 text-sky-500" />
+						<span class="text-sm font-black uppercase tracking-wider text-yellow-500">{{ t('period.title') }}</span>
+						<span class="ml-auto inline-flex items-center justify-center min-w-8 h-6 px-2 rounded-md bg-yellow-400 text-yellow-950 font-black text-sm">
+							{{ facturesMeillereFiltrees.length }}
+						</span>
 					</div>
 
 					<!-- Recherche -->
@@ -340,17 +336,17 @@
 							:class="i % 2 === 0 ? 'invoice-row-a' : 'invoice-row-b'"
 						>
 							<div class="min-w-0">
-								<div class="text-base font-black text-[#003399]">
+								<div class="text-sm font-bold text-yellow-500">
 									{{ formatDate(f.dateFacture) }}
 								</div>
-								<div class="text-base font-semibold text-slate-800">{{ f.prenom }} {{ f.nom }}</div>
+								<div class="font-bold text-slate-800">{{ f.prenom }} {{ f.nom }}</div>
 								<div class="text-sm text-slate-400 flex gap-2 flex-wrap mt-0.5">
 									<span v-if="f.numeroPage">({{ f.numeroPage }})</span>
 									<span v-if="f.pays">· {{ f.pays }}</span>
 								</div>
 							</div>
 							<div class="text-right shrink-0">
-								<div class="text-xl font-black text-[#003399]">{{ fmt(f.reste) }} €</div>
+								<div class="text-lg font-black text-orange-600">{{ fmt(f.reste) }} €</div>
 							</div>
 						</div>
 						<div v-if="facturesMeillerePaginee.length === 0" class="px-5 py-10 text-center text-slate-400 text-base">
@@ -370,7 +366,7 @@
 						>
 							<UIcon name="lucide:chevron-left" class="size-5" />
 						</button>
-						<span class="text-base font-bold text-slate-600">{{ pageMeilleure }} / {{ totalPagesMeilleure }}</span>
+						<span class="text-sm text-slate-500 font-medium">{{ pageMeilleure }} / {{ totalPagesMeilleure }}</span>
 						<button
 							class="size-10 rounded-xl border-2 border-slate-200 flex items-center justify-center text-slate-600 hover:border-[#003399] hover:text-[#003399] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
 							:disabled="pageMeilleure >= totalPagesMeilleure"
@@ -387,22 +383,22 @@
 					<div
 						class="rounded-2xl border-2 p-7 text-center transition-colors"
 						:class="meilleureFenetre.remboursementCommission > 0
-							? 'bg-gradient-to-br from-[#FFFBE6] to-[#FFFFF8] border-[#FFCC00]'
+							? 'bg-red-50 border-red-300'
 							: 'bg-slate-50 border-slate-200'"
 					>
-						<div class="text-sm font-black uppercase tracking-widest mb-4" :class="meilleureFenetre.remboursementCommission > 0 ? 'text-[#003399]' : 'text-slate-400'">
+						<div class="text-sm font-black uppercase tracking-widest mb-4" :class="meilleureFenetre.remboursementCommission > 0 ? 'text-red-600' : 'text-slate-400'">
 							{{ t('ce.title', { taux: personneACharge === 1 ? '100 %' : '90 %' }) }}
 						</div>
 						<div
 							class="font-black leading-none tabular-nums"
 							style="font-size: clamp(2.5rem, 5vw, 4rem);"
 							:class="meilleureFenetre.remboursementCommission > 0
-								? 'text-[#003399] blink-rouge'
+								? 'text-red-600 blink-rouge'
 								: 'text-slate-300'"
 						>
 							{{ fmt(meilleureFenetre.remboursementCommission) }} €
 						</div>
-						<div v-if="meilleureFenetre.remboursementCommission > 0" class="mt-4 flex items-center justify-center gap-2 text-base font-bold text-emerald-600">
+						<div v-if="meilleureFenetre.remboursementCommission > 0" class="mt-3 flex items-center justify-center gap-1 text-sm font-bold text-red-600">
 							<UIcon name="lucide:check-circle" class="size-5" />
 							{{ t('ce.exceeded') }}
 						</div>
@@ -441,8 +437,8 @@
 			══════════════════════════════════════════════════════════ -->
 			<div>
 				<div class="flex items-center gap-4 mb-5 flex-wrap">
-					<div class="w-1.5 h-8 rounded-full bg-[#003399] shrink-0" />
-					<h2 class="text-2xl font-black text-slate-900">{{ t('all.title') }}</h2>
+					<div class="w-1.5 h-7 rounded-full bg-sky-500 shrink-0" />
+					<h2 class="text-2xl font-bold font-heading text-slate-900">{{ t('all.title') }}</h2>
 					<span class="inline-flex items-center justify-center min-w-8 h-8 px-3 rounded-xl bg-[#FFCC00] text-[#00091A] font-black text-base">
 						{{ listeFacturesFiltered.length }}
 					</span>
@@ -477,7 +473,7 @@
 					>
 						<!-- Info -->
 						<div class="min-w-0">
-							<div class="text-base font-black text-[#003399] flex items-center gap-2 flex-wrap">
+							<div class="text-base font-black flex items-center gap-2 flex-wrap">
 								{{ formatDate(f.dateFacture) }}
 								<span v-if="f.pays" class="font-semibold text-slate-600">· {{ f.pays }}</span>
 								<span v-if="f.soumis" class="text-xs font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">Soumis</span>
@@ -487,7 +483,7 @@
 								<span v-if="f.matricule" class="text-sm text-slate-400">({{ f.matricule }})</span>
 							</div>
 							<div class="flex gap-3 mt-1 flex-wrap text-sm">
-								<span v-if="f.numeroPage" class="text-[#003399] font-semibold">({{ f.numeroPage }})</span>
+								<span v-if="f.numeroPage" class="text-sky-600 font-semibold">({{ f.numeroPage }})</span>
 								<span v-if="montantTotalEuroEffectif(f) > 0" class="text-slate-500">
 									Total <strong class="text-slate-700">{{ fmt(montantTotalEuroEffectif(f)) }} €</strong>
 								</span>
@@ -501,15 +497,15 @@
 						<div class="flex items-center justify-center">
 							<div
 								v-if="facturesIdsMeilleurePeriode.has(f.id!)"
-								class="flex items-center justify-center size-9 rounded-xl border-2 border-[#FFCC00] bg-[#FFFBE6] blink-star"
+								class="flex items-center justify-center size-7 rounded-md border-2 border-yellow-400 bg-yellow-50 blink-star"
 							>
-								<UIcon name="heroicons:star-solid" class="size-5 text-[#FFCC00]" />
+								<UIcon name="heroicons:star-solid" class="size-4 text-yellow-500" />
 							</div>
 						</div>
 
 						<!-- Montant + actions — colonne fixe 196px -->
 						<div class="flex items-center justify-end gap-1">
-							<div class="text-lg font-black text-right mr-1 shrink-0" :class="f.soumis ? 'text-slate-400' : 'text-[#003399]'">
+							<div class="text-lg font-black text-right mr-1 shrink-0" :class="f.soumis ? 'text-slate-400' : 'text-orange-600'">
 								{{ fmt(resteFactureAffichage(f)) }} €
 							</div>
 							<button
@@ -557,7 +553,7 @@
 			<div v-if="listeFacturesSoumises.length > 0">
 				<div class="flex items-center gap-4 mb-5 flex-wrap">
 					<div class="w-1.5 h-8 rounded-full bg-slate-400 shrink-0" />
-					<h2 class="text-2xl font-black text-slate-500">{{ t('all.submitted_section') }}</h2>
+					<h2 class="text-2xl font-bold font-heading text-slate-500">{{ t('all.submitted_section') }}</h2>
 					<span class="inline-flex items-center justify-center min-w-8 h-8 px-3 rounded-xl bg-[#FFCC00] text-[#00091A] font-black text-base">
 						{{ listeFacturesSoumises.length }}
 					</span>
