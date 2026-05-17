@@ -328,7 +328,7 @@
 					</div>
 
 					<!-- Liste -->
-					<div class="divide-y divide-slate-100">
+					<div>
 						<div
 							v-for="(f, i) in facturesMeillerePaginee"
 							:key="f.id"
