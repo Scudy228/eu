@@ -163,8 +163,8 @@
 			<div class="bg-white rounded-2xl border-2 border-slate-200 p-4 shadow-sm">
 				<!-- En-tête section -->
 				<div class="flex items-center justify-between mb-3">
-					<div class="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-						<UIcon name="lucide:zap" class="size-3.5" />
+					<div class="text-xs font-black uppercase tracking-wider text-[#FFCC00] flex items-center gap-1.5">
+						<UIcon name="lucide:zap" class="size-3.5 text-[#FFCC00]" />
 						{{ t('quick.title') }}
 					</div>
 					<div v-if="salaireNet > 0" class="flex items-center gap-2">
@@ -281,7 +281,7 @@
 							<!-- Total période -->
 							<div v-if="meilleureFenetre && meilleureFenetre.totalReste > 0" class="flex items-center gap-3 px-4 py-2 rounded-xl bg-blue-50 border border-[#003399]/20 self-start sm:self-auto">
 								<span class="text-sm font-bold text-slate-500 uppercase tracking-wider">{{ t('quick.total_period') }}</span>
-								<span class="text-2xl font-black text-[#003399] tabular-nums">{{ fmt(meilleureFenetre.totalReste) }} €</span>
+								<span class="text-2xl font-black text-slate-900 tabular-nums">{{ fmt(meilleureFenetre.totalReste) }} €</span>
 							</div>
 							<div v-else class="hidden sm:block" />
 
@@ -307,10 +307,10 @@
 
 				<!-- GAUCHE : factures de la période -->
 				<div class="flex-1 bg-white rounded-2xl border-2 border-slate-200 overflow-hidden shadow-sm">
-					<div class="flex items-center justify-between mb-3">
-						<UIcon name="lucide:files" class="size-4 text-sky-500" />
-						<span class="text-sm font-black uppercase tracking-wider text-yellow-500">{{ t('period.title') }}</span>
-						<span class="ml-auto inline-flex items-center justify-center min-w-8 h-6 px-2 rounded-md bg-yellow-400 text-yellow-950 font-black text-sm">
+					<div class="px-5 py-3 bg-slate-50 border-b-2 border-slate-100 flex items-center gap-2">
+						<UIcon name="lucide:files" class="size-4 text-[#FFCC00]" />
+						<span class="text-sm font-black uppercase tracking-wider text-[#FFCC00]">{{ t('period.title') }}</span>
+						<span class="ml-auto inline-flex items-center justify-center min-w-8 h-6 px-2 rounded-md bg-[#FFCC00] text-[#00091A] font-black text-sm">
 							{{ facturesMeillereFiltrees.length }}
 						</span>
 					</div>
@@ -336,7 +336,7 @@
 							:class="i % 2 === 0 ? 'invoice-row-a' : 'invoice-row-b'"
 						>
 							<div class="min-w-0">
-								<div class="text-sm font-bold text-yellow-500">
+								<div class="text-sm font-bold text-[#FFCC00]">
 									{{ formatDate(f.dateFacture) }}
 								</div>
 								<div class="font-bold text-slate-800">{{ f.prenom }} {{ f.nom }}</div>
@@ -386,12 +386,12 @@
 							? 'bg-red-50 border-red-300'
 							: 'bg-slate-50 border-slate-200'"
 					>
-						<div class="text-sm font-black uppercase tracking-widest mb-4" :class="meilleureFenetre.remboursementCommission > 0 ? 'text-red-600' : 'text-slate-400'">
+						<div class="text-xs font-black uppercase tracking-wide whitespace-nowrap mb-3" :class="meilleureFenetre.remboursementCommission > 0 ? 'text-red-600' : 'text-slate-400'">
 							{{ t('ce.title', { taux: personneACharge === 1 ? '100 %' : '90 %' }) }}
 						</div>
 						<div
-							class="font-black leading-none tabular-nums"
-							style="font-size: clamp(2.5rem, 5vw, 4rem);"
+							class="font-black leading-none tabular-nums whitespace-nowrap"
+							style="font-size: clamp(1.75rem, 4vw, 2.75rem);"
 							:class="meilleureFenetre.remboursementCommission > 0
 								? 'text-red-600 blink-rouge'
 								: 'text-slate-300'"
@@ -410,7 +410,7 @@
 					<!-- Bouton soumettre -->
 					<button
 						v-if="isPremium"
-						class="w-full flex items-center justify-center gap-3 py-5 rounded-2xl bg-[#003399] text-white font-black text-lg hover:bg-[#002277] disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors"
+						class="w-full flex items-center justify-center gap-3 py-5 rounded-2xl bg-[#003399] text-white font-black text-lg hover:bg-[#FFCC00] hover:text-[#00091A] disabled:bg-slate-300 disabled:text-white disabled:cursor-not-allowed transition-colors"
 						:disabled="!profilComplet"
 						@click="ouvrirSoumission"
 					>
@@ -497,9 +497,9 @@
 						<div class="flex items-center justify-center">
 							<div
 								v-if="facturesIdsMeilleurePeriode.has(f.id!)"
-								class="flex items-center justify-center size-7 rounded-md border-2 border-yellow-400 bg-yellow-50 blink-star"
+								class="flex items-center justify-center size-7 rounded-md border-2 border-[#FFCC00] bg-[#FFFBE6] blink-star"
 							>
-								<UIcon name="heroicons:star-solid" class="size-4 text-yellow-500" />
+								<UIcon name="heroicons:star-solid" class="size-4 text-[#FFCC00]" />
 							</div>
 						</div>
 
