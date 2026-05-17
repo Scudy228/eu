@@ -33,6 +33,92 @@
 	0%, 100% { box-shadow: 0 0 0 0px rgba(255,204,0,.0); }
 	50%       { box-shadow: 0 0 16px 4px rgba(255,204,0,.25); }
 }
+@keyframes orb-drift-1 {
+	0%, 100% { transform: translate(0px,   0px); }
+	25%       { transform: translate(70px,  50px); }
+	50%       { transform: translate(30px, 120px); }
+	75%       { transform: translate(-50px, 60px); }
+}
+@keyframes orb-drift-2 {
+	0%, 100% { transform: translate(0px,   0px); }
+	25%       { transform: translate(-80px, -40px); }
+	50%       { transform: translate(-20px, -90px); }
+	75%       { transform: translate(60px, -50px); }
+}
+@keyframes orb-drift-3 {
+	0%, 100% { transform: translate(0px,  0px); }
+	33%       { transform: translate(50px, -70px); }
+	66%       { transform: translate(-40px, -40px); }
+}
+@keyframes orb-drift-4 {
+	0%, 100% { transform: translate(0px,  0px); }
+	50%       { transform: translate(-70px, 80px); }
+}
+@keyframes orb-drift-5 {
+	0%, 100% { transform: translate(0px,  0px); }
+	33%       { transform: translate(80px, 30px); }
+	66%       { transform: translate(20px, -60px); }
+}
+@keyframes orb-drift-6 {
+	0%, 100% { transform: translate(0px,  0px); }
+	25%       { transform: translate(-60px, 50px); }
+	75%       { transform: translate(50px, -40px); }
+}
+
+/* ══════════════════════════════════════════════════════════
+   ORBES FLOTTANTES — arrière-plan animé
+   ══════════════════════════════════════════════════════════ */
+.orb {
+	position: absolute;
+	border-radius: 50%;
+	filter: blur(72px);
+	will-change: transform;
+}
+
+.orb-1 {
+	width: 420px; height: 420px;
+	background: rgba(0,51,153,.13);
+	top: -80px; left: -80px;
+	animation: orb-drift-1 22s ease-in-out infinite;
+}
+.orb-2 {
+	width: 300px; height: 300px;
+	background: rgba(255,204,0,.10);
+	bottom: 5%; right: -60px;
+	animation: orb-drift-2 28s ease-in-out infinite;
+}
+.orb-3 {
+	width: 500px; height: 500px;
+	background: rgba(0,51,153,.07);
+	top: 35%; left: 45%;
+	animation: orb-drift-3 35s ease-in-out infinite;
+}
+.orb-4 {
+	width: 260px; height: 260px;
+	background: rgba(255,204,0,.08);
+	top: 15%; right: 18%;
+	animation: orb-drift-4 20s ease-in-out infinite;
+}
+.orb-5 {
+	width: 380px; height: 380px;
+	background: rgba(0,80,200,.09);
+	bottom: -80px; left: 25%;
+	animation: orb-drift-5 26s ease-in-out infinite;
+}
+.orb-6 {
+	width: 220px; height: 220px;
+	background: rgba(255,204,0,.09);
+	top: 60%; left: 10%;
+	animation: orb-drift-6 18s ease-in-out infinite;
+}
+
+/* Dark mode — orbes plus intenses */
+.dark .orb-1 { background: rgba(0,51,153,.30); }
+.dark .orb-2 { background: rgba(255,204,0,.14); }
+.dark .orb-3 { background: rgba(0,51,153,.18); }
+.dark .orb-4 { background: rgba(255,204,0,.12); }
+.dark .orb-5 { background: rgba(0,80,200,.20); }
+.dark .orb-6 { background: rgba(255,204,0,.10); }
 
 /* ══════════════════════════════════════════════════════════
    BASE — Tailles identiques au projet EU
