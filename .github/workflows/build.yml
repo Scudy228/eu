@@ -1,0 +1,93 @@
+name: Build Desktop App
+
+on:
+  push:
+    branches: [main, master]
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: macos-latest
+            args: --target aarch64-apple-darwin
+
+          - platform: ubuntu-22.04
+            args: ""
+
+          - platform: windows-latest
+            args: ""
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin' || '' }}
+
+      - name: Cache Rust
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: Install Linux system dependencies
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwebkit2gtk-4.1-dev \
+            libappindicator3-dev \
+            librsvg2-dev \
+            patchelf \
+            libsoup-3.0-dev \
+            libjavascriptcoregtk-4.1-dev \
+            libglib2.0-dev
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      # ── Build + Release (uniquement si tag v*) ──────────────────
+      - name: Build Tauri app
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '' }}
+          releaseName: "RCAM Décomptes ${{ github.ref_name }}"
+          releaseBody: |
+            ## Téléchargements
+
+            | Plateforme | Fichier | Usage |
+            |---|---|---|
+            | Windows | `*_setup.exe` | Installeur (recommandé) |
+            | Windows | `*.msi` | Installeur entreprise |
+            | Windows | `RCAM-Decomptees-portable.exe` | Portable — sans installation |
+            | macOS ARM | `*.dmg` | Mac M1/M2/M3/M4 |
+            | Linux | `*.AppImage` | Toutes distributions |
+          releaseDraft: false
+          prerelease: false
+          args: ${{ matrix.args }}
+
+      # ── Windows portable : upload dans la Release ───────────────
+      - name: Upload Windows portable to release
+        if: matrix.platform == 'windows-latest' && startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ github.ref_name }} "src-tauri/target/release/eu2.exe#RCAM-Decomptees-portable.exe" --clobber
