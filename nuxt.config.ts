@@ -10,7 +10,7 @@ export default defineNuxtConfig({
 	],
 	app: {
 		head: {
-			title: "RCAM / Article 72§3",
+			title: "RCAM",
 			charset: "utf-8",
 			meta: [
 				{ name: "format-detection", content: "no" },

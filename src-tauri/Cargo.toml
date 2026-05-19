@@ -1,13 +1,13 @@
 [package]
-name = "eu2"
+name = "rcam"
 version = "1.0.0"
-description = "RCAM / Article 72§3 — Décomptes Médicales CE"
+description = "RCAM — Décomptes Médicales CE"
 authors = ["Scudyweb"]
 license = "MIT"
 edition = "2021"
 
 [lib]
-name = "eu2_lib"
+name = "rcam_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]

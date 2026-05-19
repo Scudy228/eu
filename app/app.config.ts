@@ -1,6 +1,6 @@
 export default defineAppConfig({
 	app: {
-		name: "Décomptes Médicales CE",
+		name: "RCAM",
 		author: "Scudyweb",
 		version: "1.0.0"
 	},
